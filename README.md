@@ -1,2 +1,4 @@
 # mirs-v1
-Music instrument rental system
+Music Instrument Rental System
+
+Documentation: see "doc" folder
