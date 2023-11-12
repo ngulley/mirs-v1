@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79bb9cde-a935-4a5b-b4b4-f035f2d77c85" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/com/mirs/model/business/Driver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/gulley-nathan-Week3.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/gulley-nathan-Week3.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/business/InstrumentManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/IInstrumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/IInstrumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/login/ILoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/login/ILoginService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/login/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/login/LoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +206,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697917184483</updated>
-      <workItem from="1697917185716" duration="57380000" />
+      <workItem from="1697917185716" duration="58475000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
