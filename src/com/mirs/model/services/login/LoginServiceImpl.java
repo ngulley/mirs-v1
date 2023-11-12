@@ -1,6 +1,7 @@
 package com.mirs.model.services.login;
 
 import com.mirs.model.domain.User;
+import com.mirs.model.services.IService;
 
 public class LoginServiceImpl implements ILoginService {
     /**

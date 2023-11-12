@@ -5,7 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79bb9cde-a935-4a5b-b4b4-f035f2d77c85" name="Changes" comment="Initial commit">
-      <change beforePath="$PROJECT_DIR$/doc/~$lley-nathan-Week3.docx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/mirs/model/business/Driver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/gulley-nathan-Week3.docx" beforeDir="false" afterPath="$PROJECT_DIR$/doc/gulley-nathan-Week3.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/business/InstrumentManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/IInstrumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/IInstrumentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/login/ILoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/login/ILoginService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/login/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/login/LoginServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +26,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="JUnit5 Test Class" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -50,14 +61,14 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "week3",
+    "git-widget-placeholder": "week4",
     "last_directory_selection": "C:/Users/Nate/IdeaProjects/mirs-v1/src/com/mirs",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "onboarding.tips.debug.path": "C:/Users/Nate/IdeaProjects/mirs-v1/src/Main.java",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager",
@@ -75,16 +86,76 @@
       <recent name="com.mirs.model.domain" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.InstrumentServiceImplTest">
-    <configuration name="InstrumentManager" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.mirs.model.business.InstrumentManager" />
+  <component name="RunManager" selected="JUnit.BranchServiceImplTest">
+    <configuration name="Driver" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mirs.model.business.Driver" />
       <module name="mirs-v1" />
+      <option name="VM_PARAMETERS" value="-Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.mirs.model.business.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Driver" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mirs.model.business.Driver" />
+      <module name="mirs-v1" />
+      <option name="VM_PARAMETERS" value="-Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mirs.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InstrumentManager" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mirs.model.business.InstrumentManager" />
+      <module name="mirs-v1" />
+      <option name="VM_PARAMETERS" value="-Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mirs.model.business.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestRunner" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.mirs.model.TestRunner" />
+      <module name="mirs-v1" />
+      <option name="VM_PARAMETERS" value="-Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mirs.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BranchServiceImplTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="mirs-v1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.mirs.model.services.branch.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.mirs.model.services.branch" />
+      <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.branch.BranchServiceImplTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,12 +170,14 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.mirs.model.services.instrument" />
       <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.instrument.InstrumentServiceImplTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InstrumentServiceImplTest.testAdd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="InstrumentServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="mirs-v1" />
       <extension name="coverage">
         <pattern>
@@ -114,67 +187,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.mirs.model.services.instrument" />
       <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.instrument.InstrumentServiceImplTest" />
-      <option name="METHOD_NAME" value="testAdd" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea -Dprop_location=C:\\Users\\Nate\\IdeaProjects\\mirs-v1\\config\\application.properties" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="InstrumentServiceImplTest.testDelete" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mirs-v1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mirs.model.services.instrument.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.mirs.model.services.instrument" />
-      <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.instrument.InstrumentServiceImplTest" />
-      <option name="METHOD_NAME" value="testDelete" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InstrumentServiceImplTest.testGetAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mirs-v1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mirs.model.services.instrument.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.mirs.model.services.instrument" />
-      <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.instrument.InstrumentServiceImplTest" />
-      <option name="METHOD_NAME" value="testGetAll" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InstrumentServiceImplTest.testUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="mirs-v1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.mirs.model.services.instrument.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.mirs.model.services.instrument" />
-      <option name="MAIN_CLASS_NAME" value="com.mirs.model.services.instrument.InstrumentServiceImplTest" />
-      <option name="METHOD_NAME" value="testUpdate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+    <list>
+      <item itemvalue="Application.TestRunner" />
+      <item itemvalue="Application.Driver" />
+      <item itemvalue="JUnit.BranchServiceImplTest" />
+      <item itemvalue="JUnit.InstrumentServiceImplTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.InstrumentServiceImplTest" />
-        <item itemvalue="JUnit.InstrumentServiceImplTest.testDelete" />
-        <item itemvalue="JUnit.InstrumentServiceImplTest.testUpdate" />
-        <item itemvalue="JUnit.InstrumentServiceImplTest.testAdd" />
-        <item itemvalue="JUnit.InstrumentServiceImplTest.testGetAll" />
+        <item itemvalue="JUnit.InstrumentServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -186,7 +215,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697917184483</updated>
-      <workItem from="1697917185716" duration="33876000" />
+      <workItem from="1697917185716" duration="57380000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -205,5 +234,34 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/Driver.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/Driver.java</url>
+          <line>20</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/mirs_v1$BranchServiceImplTest.ic" NAME="BranchServiceImplTest Coverage Results" MODIFIED="1699825140433" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.mirs.model.services.branch.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/mirs_v1$TestRunner.ic" NAME="TestRunner Coverage Results" MODIFIED="1699826501934" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>com.mirs.model.*</FILTER>
+    </SUITE>
   </component>
 </project>

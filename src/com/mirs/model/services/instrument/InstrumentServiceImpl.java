@@ -3,11 +3,14 @@ package com.mirs.model.services.instrument;
 import com.mirs.model.domain.Instrument;
 import com.mirs.model.domain.InstrumentStatus;
 import com.mirs.model.domain.InstrumentType;
+import com.mirs.model.services.IService;
 import com.mirs.model.services.exception.InstrumentException;
 
 import java.util.*;
 
 public class InstrumentServiceImpl implements IInstrumentService {
+
+    public InstrumentServiceImpl() { }
 
     /**
      * Temporary persistence mechanism
@@ -16,7 +19,7 @@ public class InstrumentServiceImpl implements IInstrumentService {
 
     public boolean add(Instrument instrument) throws InstrumentException {
         if (this.getById(instrument.getId()) != null) {
-            throw new InstrumentException("An instrument with the same instrument id already exists!");
+            throw new InstrumentException("Unable to add because an instrument id " + instrument.getId() + " already exists in the system!");
         }
         this.instruments.put(instrument.getId(), instrument);
         System.out.println("Instrument [" + instrument.getId() + " : " + instrument.getName() + "] was successfully added to system!");
@@ -25,23 +28,23 @@ public class InstrumentServiceImpl implements IInstrumentService {
 
     public boolean update(Instrument instrument) throws InstrumentException {
         if (this.getById(instrument.getId()) == null) {
-            throw new InstrumentException("An instrument with instrument id " + instrument.getId() + " doesn't exists!");
+            throw new InstrumentException("Unable to update because instrument id " + instrument.getId() + " doesn't exists in the system!");
         }
         this.instruments.put(instrument.getId(), instrument);
-        System.out.println("Instrument was successfully updated in system!");
+        System.out.println("Instrument id " + instrument.getId() + " was successfully updated in system!");
         return true;
     }
 
     public boolean delete(Integer instrumentId) throws InstrumentException {
         Instrument i = this.getById(instrumentId);
         if (i == null) {
-            throw new InstrumentException("An instrument with instrument id " + instrumentId + " doesn't exists!");
+            throw new InstrumentException("Unable to delete because instrument id " + instrumentId + " doesn't exists in the system!");
         } else if (i.getStatus() == InstrumentStatus.RENTED) {
-            throw new InstrumentException("Instrument " + instrumentId + " is currently in RENTED status. Only instruments " +
-                    "with a status of AVAILABLE and BROKEN can be deleted.!");
+            throw new InstrumentException("Unable to delete because instrument " + instrumentId + " is currently in RENTED status. Only instruments " +
+                    "with a status of AVAILABLE or BROKEN can be deleted.!");
         }
         this.instruments.remove(instrumentId);
-        System.out.println("Instrument was successfully deleted from system!");
+        System.out.println("Instrument was successfully deleted from the system!");
         return true;
     }
 
