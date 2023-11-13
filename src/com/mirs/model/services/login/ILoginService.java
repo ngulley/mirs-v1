@@ -10,7 +10,7 @@ public interface ILoginService extends IService {
     public final String NAME = "ILoginService";
     /**
      * Authenticate customer into our application
-     * @param RentalComposite
+     * @param rentalComposite
      * 							contains customer information to be authenticated
      * @throws LoginException
      * 							If the Customer object in the composite is null or

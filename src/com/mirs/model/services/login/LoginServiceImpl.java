@@ -7,7 +7,7 @@ import com.mirs.model.services.exception.LoginException;
 public class LoginServiceImpl implements ILoginService {
     /**
      * Authenticate customer into our application
-     * @param RentalComposite
+     * @param rentalComposite
      * 							contains customer information to be authenticated
      * @throws LoginException
      * 							If the Customer object in the composite is null or
@@ -18,11 +18,19 @@ public class LoginServiceImpl implements ILoginService {
      * 				    false - if failed to authenticate
      * */
     public boolean authenticateCustomer(RentalComposite rentalComposite) throws LoginException {
-        System.out.println ("Entering method LoginServiceImpl::authenticateUser");
+        System.out.println ("Entering method LoginServiceImpl::authenticateCustomer");
 
         return true;
     }
 
+    /**
+     * Authenticate an admin user into our application
+     * @param user
+     * @throws LoginException
+     * @return boolean
+     * 					true - if authenticated
+     * 				    false - if failed to authenticate
+     */
     public boolean authenticateAdmin(User user) throws LoginException {
         System.out.println ("Entering method LoginServiceImpl::authenticateAdmin");
 
