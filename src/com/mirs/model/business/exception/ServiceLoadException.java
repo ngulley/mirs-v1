@@ -1,11 +1,8 @@
 package com.mirs.model.business.exception;
 
 @SuppressWarnings("serial")
-public class ServiceLoadException extends Exception
-{
-    public ServiceLoadException(final String inMessage, final Throwable inNestedException)
-    {
+public class ServiceLoadException extends Exception {
+    public ServiceLoadException(final String inMessage, final Throwable inNestedException) {
         super(inMessage, inNestedException);
     }
-
 }

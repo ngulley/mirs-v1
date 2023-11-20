@@ -26,17 +26,18 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch, Composite)}.
      */
     @Test
     public final void testAdd1() {
         System.out.println("starting testAdd1()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            assertTrue ("Branch is added", branchService.add(branch1));
+            assertTrue ("Branch is added", branchService.add(branch1, composite));
         } catch (BranchException e) {
             System.out.println("testAdd1 FAILED");
             throw new RuntimeException(e);
@@ -46,17 +47,18 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch, Composite)}.
      */
     @Test
     public final void testAdd2() {
         System.out.println("starting testAdd2()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            assertTrue ("Branch is added", branchService.add(branch1));
+            assertTrue ("Branch is added", branchService.add(branch1, composite));
         } catch (BranchException e) {
             System.out.println("testAdd2 FAILED");
             throw new RuntimeException(e);
@@ -68,7 +70,7 @@ public class BranchServiceImplTest {
                     new Address("405 W Roosevelt Rd", "", "Lombard", "IL", "60811"),
                     BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
-            branchService.add(branch2);
+            branchService.add(branch2, composite);
             System.out.println("testAdd2 FAILED");
             throw new RuntimeException();
         } catch (BranchException e) {
@@ -79,11 +81,12 @@ public class BranchServiceImplTest {
 
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#add(Branch, Composite)}.
      */
     @Test
-    public final void testGetAll1() {
-        System.out.println("starting testGatAll1()");
+    public final void testList1() {
+        System.out.println("starting testList1()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
@@ -93,9 +96,9 @@ public class BranchServiceImplTest {
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            branchService.add(branch1);
-            branchService.add(branch2);
-            assertTrue ("All branches were got", branchService.getAll().size() == 2);
+            branchService.add(branch1, composite);
+            branchService.add(branch2, composite);
+            assertTrue ("All branches were got", branchService.list(composite));
         } catch (BranchException e) {
             System.out.println("testGatAll1 FAILED");
             throw new RuntimeException(e);
@@ -105,22 +108,23 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch, Composite)}.
      */
     @Test
     public final void testUpdate1() {
         System.out.println("starting testUpdate1()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            branchService.add(branch1);
+            branchService.add(branch1, composite);
             Branch branch1b = new Branch(1, "The Music Store # 1", "7082095555",
                     new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                     BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
-            assertTrue ("Branch is updated", branchService.update(branch1b));
+            assertTrue ("Branch is updated", branchService.update(branch1b, composite));
         } catch (BranchException e) {
             System.out.println("testUpdate1 FAILED");
             throw new RuntimeException(e);
@@ -130,19 +134,20 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch, Composite)}.
      */
     @Test
     public final void testUpdate2() {
         System.out.println("starting testUpdate2()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            branchService.add(branch1);
+            branchService.add(branch1, composite);
 
-            assertTrue ("Branch is updated", branchService.update(branch1));
+            assertTrue ("Branch is updated", branchService.update(branch1, composite));
         } catch (BranchException e) {
             System.out.println("testUpdate2 FAILED");
             throw new RuntimeException(e);
@@ -153,7 +158,7 @@ public class BranchServiceImplTest {
             Branch branch1b = new Branch(2, "Music Store # 1", "7082094556",
                     new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                     BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
-            branchService.update(branch1b);
+            branchService.update(branch1b, composite);
             System.out.println("testUpdate2 FAILED");
             throw new RuntimeException();
         } catch (BranchException e) {
@@ -164,19 +169,20 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch, Composite)}.
      */
     @Test
     public final void testDelete1() {
         System.out.println("starting testDelete1()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.INACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            branchService.add(branch1);
+            branchService.add(branch1, composite);
 
-            assertTrue ("Branch is deleted", branchService.delete(branch1.getId()));
+            assertTrue ("Branch is deleted", branchService.delete(branch1.getId(), composite));
         } catch (BranchException e) {
             System.out.println("testDelete1 FAILED");
             throw new RuntimeException(e);
@@ -186,17 +192,18 @@ public class BranchServiceImplTest {
     }
 
     /**
-     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch)}.
+     * Test method for {@link com.mirs.model.services.branch.BranchServiceImpl#update(Branch, Composite)}.
      */
     @Test
     public final void testDelete2() {
         System.out.println("starting testDelete2()");
+        Composite composite = new Composite();
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
                 BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
 
         try {
-            branchService.add(branch1);
+            branchService.add(branch1, composite);
 
         } catch (BranchException e) {
             System.out.println("testDelete2 FAILED");
@@ -205,7 +212,7 @@ public class BranchServiceImplTest {
 
         try {
             // Try to delete an branch that doesn't have the same id as an existing branch in the system. A BranchException should be thrown
-            branchService.delete(2);
+            branchService.delete(2, composite);
             System.out.println("testDelete2 FAILED");
             throw new RuntimeException();
         } catch (BranchException e) {
