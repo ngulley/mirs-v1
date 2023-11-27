@@ -1,13 +1,12 @@
-package com.mirs.ui;
+package com.mirs.view;
 
 import com.mirs.model.business.manager.InstrumentRentalManager;
 import com.mirs.model.domain.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-public class RunApp {
+public class ViewDriver1 {
     public static void main(String[] args) {
         System.out.println("Musical Instrument Rental System version 1.0");
 
@@ -45,9 +44,9 @@ public class RunApp {
         composite.setBranch(branch1);
         boolean isAdded = manager.performAction("ADD_BRANCH", composite);
         if (isAdded) {
-            message.append("\nSUCCESS:  RunApp:: - Branch added. ");
+            message.append("\nSUCCESS:  ViewDriver1:: - Branch added. ");
         } else {
-            message.append("\nFAIL:  RunApp:: - Branch not added. ");
+            message.append("\nFAIL:  ViewDriver1:: - Branch not added. ");
         }
 
         List<Branch> branches = composite.getBranchList();
@@ -59,9 +58,9 @@ public class RunApp {
         composite.setInstrument(instrument1);
         isAdded = manager.performAction("ADD_INSTRUMENT", composite);
         if (isAdded) {
-            message.append("\nSUCCESS:  RunApp:: - Instrument added.");
+            message.append("\nSUCCESS:  ViewDriver1:: - Instrument added.");
         } else {
-            message.append("\nFAIL:  RunApp:: - Instrument not added.");
+            message.append("\nFAIL:  ViewDriver1:: - Instrument not added.");
         }
 
         List<Instrument> instruments = composite.getInstrumentList();
