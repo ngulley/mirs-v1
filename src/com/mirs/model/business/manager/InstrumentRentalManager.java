@@ -89,7 +89,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isLoggedIn = false;
 
         try {
-            loginService = (ILoginService) serviceFactory.getService(commandString);
+            loginService = (ILoginService) serviceFactory.getService(ILoginService.NAME);
             isLoggedIn = loginService.authenticateUser(composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load LoginService." + sle.getMessage());
@@ -108,7 +108,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isLoggedOut = false;
 
         try {
-            loginService = (ILoginService) serviceFactory.getService(commandString);
+            loginService = (ILoginService) serviceFactory.getService(ILoginService.NAME);
             isLoggedOut = loginService.logoutUser(composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load LoginService." + sle.getMessage());
@@ -127,7 +127,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isListed = false;
 
         try {
-            instrumentService = (IInstrumentService) serviceFactory.getService(commandString);
+            instrumentService = (IInstrumentService) serviceFactory.getService(IInstrumentService.NAME);
             isListed = instrumentService.list(composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load InstrumentService." + sle.getMessage());
@@ -145,7 +145,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isAdded = false;
 
         try {
-            instrumentService = (IInstrumentService) serviceFactory.getService(commandString);
+            instrumentService = (IInstrumentService) serviceFactory.getService(IInstrumentService.NAME);
             isAdded = instrumentService.add(composite.getInstrument(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load InstrumentService." + sle.getMessage());
@@ -163,7 +163,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isUpdated = false;
 
         try {
-            instrumentService = (IInstrumentService) serviceFactory.getService(commandString);
+            instrumentService = (IInstrumentService) serviceFactory.getService(IInstrumentService.NAME);
             isUpdated = instrumentService.update(composite.getInstrument(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load InstrumentService." + sle.getMessage());
@@ -181,7 +181,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isDeleted = false;
 
         try {
-            instrumentService = (IInstrumentService) serviceFactory.getService(commandString);
+            instrumentService = (IInstrumentService) serviceFactory.getService(IInstrumentService.NAME);
             isDeleted = instrumentService.delete(composite.getInstrument().getId(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load InstrumentService." + sle.getMessage());
@@ -199,7 +199,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isListed = false;
 
         try {
-            branchService = (IBranchService) serviceFactory.getService(commandString);
+            branchService = (IBranchService) serviceFactory.getService(IBranchService.NAME);
             isListed = branchService.list(composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load BranchService." + sle.getMessage());
@@ -218,7 +218,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isAdded = false;
 
         try {
-            branchService = (IBranchService) serviceFactory.getService(commandString);
+            branchService = (IBranchService) serviceFactory.getService(IBranchService.NAME);
             isAdded = branchService.add(composite.getBranch(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load BranchService." + sle.getMessage());
@@ -236,7 +236,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isUpdated = false;
 
         try {
-            branchService = (IBranchService) serviceFactory.getService(commandString);
+            branchService = (IBranchService) serviceFactory.getService(IBranchService.NAME);
             isUpdated = branchService.update(composite.getBranch(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load BranchService." + sle.getMessage());
@@ -254,7 +254,7 @@ public class InstrumentRentalManager extends AbstractManager{
         boolean isDeleted = false;
 
         try {
-            branchService = (IBranchService) serviceFactory.getService(commandString);
+            branchService = (IBranchService) serviceFactory.getService(IBranchService.NAME);
             isDeleted = branchService.delete(composite.getBranch().getId(), composite);
         } catch (ServiceLoadException sle) {
             System.out.println("ERROR: InstrumentRentalManager::failed to load BranchService." + sle.getMessage());
