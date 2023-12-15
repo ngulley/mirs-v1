@@ -9,13 +9,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.List;
-import java.util.Objects;
 
 public class MainJFrame extends JFrame {
     private InstrumentRentalManager manager;
@@ -30,17 +32,18 @@ public class MainJFrame extends JFrame {
 
         this.manager = InstrumentRentalManager.getInstance();
 
-        // Image Icons - Give source credit to: https://icons8.com/icon/u7vefpUu46Xk/drums
+        // Image Icons - source credit goes to: https://icons8.com -> Windows 11 Color Style
         ImageIcon customersIcon = new ImageIcon(Objects.requireNonNull(
                 this.getClass().getResource("icons8-people-48.png")));
 
         ImageIcon branchesIcon = new ImageIcon(Objects.requireNonNull(
                 this.getClass().getResource("icons8-related-companies-48.png")));
 
+        // https://icons8.com/icon/u7vefpUu46Xk/drums
         ImageIcon instrumentsIcon = new ImageIcon(Objects.requireNonNull(
                 this.getClass().getResource("icons8-drums-48.png")));
 
-        ImageIcon rentalsIcon = new ImageIcon(Objects.requireNonNull(
+        ImageIcon reservationsIcon = new ImageIcon(Objects.requireNonNull(
                 this.getClass().getResource("icons8-exchange-48.png")));
 
         ImageIcon adminsIcon = new ImageIcon(Objects.requireNonNull(
@@ -55,7 +58,7 @@ public class MainJFrame extends JFrame {
         tabbedPane.addTab("Customers", customersIcon, new CustomersPanel(this.manager, this));
         tabbedPane.addTab("Branches", branchesIcon, new BranchPanel(this.manager, this));
         tabbedPane.addTab("Instruments",  instrumentsIcon, new InstrumentPanel(this.manager, this));
-        tabbedPane.addTab("Rentals", rentalsIcon, new RentalPanel(this.manager, this));
+        tabbedPane.addTab("Reservations", reservationsIcon, new ReservationPanel(this.manager, this));
 
 
         // Increase the vertical space between tabs
@@ -107,6 +110,7 @@ public class MainJFrame extends JFrame {
 class EmployeePanel extends JPanel {
     private JTable contentTable;
     private DefaultTableModel tableModel;
+    private EmployeeTableModel tableModel2;
     private JFrame parent;
 
     public EmployeePanel(InstrumentRentalManager manager, JFrame parent) {
@@ -118,10 +122,20 @@ class EmployeePanel extends JPanel {
         String[] columns = {"Email", "Password", "First Name", "Last Name", "Phone", "Address", "Role"};
 
         // Table model
-        tableModel = new DefaultTableModel(columns, 0);
+        // tableModel = new DefaultTableModel(columns, 0);
+        tableModel2 = new EmployeeTableModel();
 
-        contentTable = new JTable(tableModel);
+        Composite composite = new Composite();
+        boolean isSuccess = manager.performAction("LIST_EMPLOYEES", composite);
+        if (isSuccess) {
+            tableModel2.setEmployeeList(composite.getUserList());
+        } else {
+            System.out.println("\nFAIL:  EmployeePanel:: - Employees not listed. ");
+        }
+
+        contentTable = new JTable(tableModel2);
         contentTable.setFillsViewportHeight(true);
+        contentTable.getColumnModel().getColumn(0).setPreferredWidth(5);
 
         JScrollPane scrollPane = new JScrollPane(contentTable);
 
@@ -175,6 +189,8 @@ class EmployeePanel extends JPanel {
         // Create form components
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 5));
         formPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+        JLabel idLabel = new JLabel("ID:");
+        JTextField idField = new JTextField();
         JLabel emailLabel = new JLabel("Email:");
         JTextField emailField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
@@ -187,11 +203,10 @@ class EmployeePanel extends JPanel {
         JTextField phoneField = new JTextField();
         JLabel addressLabel = new JLabel("Address:");
         JTextField addressField = new JTextField();
-        JLabel roleLabel = new JLabel("Role:");
-        String[] roleOptions = {"ADMIN", "CUSTOMER"};
-        JComboBox<String> roleComboBox = new JComboBox<>(roleOptions);
 
         // Add components to the form panel
+        formPanel.add(idLabel);
+        formPanel.add(idField);
         formPanel.add(emailLabel);
         formPanel.add(emailField);
         formPanel.add(passwordLabel);
@@ -204,8 +219,6 @@ class EmployeePanel extends JPanel {
         formPanel.add(phoneField);
         formPanel.add(addressLabel);
         formPanel.add(addressField);
-        formPanel.add(roleLabel);
-        formPanel.add(roleComboBox);
 
         // Create buttons
         JButton submitButton = new JButton("Submit");
@@ -218,15 +231,15 @@ class EmployeePanel extends JPanel {
                 // Handle create user action
                 // Implement your logic here, e.g., add a new row to the table
                 String[] userData = {
+                        idField.getText(),
                         emailField.getText(),
-                        passwordField.getText(),
+                       // passwordField.getText(),
                         firstNameField.getText(),
                         lastNameField.getText(),
                         phoneField.getText(),
-                        addressField.getText(),
-                        (String)roleComboBox.getSelectedItem()
+                        addressField.getText()
                 };
-                tableModel.addRow(userData);
+                // tableModel2.addRow(userData);
                 addUserDialog.dispose(); // Close the dialog
             }
         });
@@ -259,6 +272,7 @@ class EmployeePanel extends JPanel {
 class CustomersPanel extends JPanel {
     private JTable contentTable;
     private DefaultTableModel tableModel;
+    private CustomerTableModel tableModel2;
     private JFrame parent;
 
     public CustomersPanel(InstrumentRentalManager manager, JFrame parent) {
@@ -270,10 +284,20 @@ class CustomersPanel extends JPanel {
         String[] columns = {"Email", "Password", "First Name", "Last Name", "Phone", "Address", "Role"};
 
         // Table model
-        tableModel = new DefaultTableModel(columns, 0);
+       // tableModel = new DefaultTableModel(columns, 0);
+        tableModel2 = new CustomerTableModel();
 
-        contentTable = new JTable(tableModel);
+        Composite composite = new Composite();
+        boolean isSuccess = manager.performAction("LIST_CUSTOMERS", composite);
+        if (isSuccess) {
+            tableModel2.setCustomerList(composite.getUserList());
+        } else {
+            System.out.println("\nFAIL:  CustomerPanel:: - Customers not listed. ");
+        }
+
+        contentTable = new JTable(tableModel2);
         contentTable.setFillsViewportHeight(true);
+        contentTable.getColumnModel().getColumn(0).setPreferredWidth(5);
 
         JScrollPane scrollPane = new JScrollPane(contentTable);
 
@@ -330,6 +354,8 @@ class CustomersPanel extends JPanel {
         // Create form components
         JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 5));
         formPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+        JLabel idLabel = new JLabel("ID:");
+        JTextField idField = new JTextField();
         JLabel emailLabel = new JLabel("Email:");
         JTextField emailField = new JTextField();
         JLabel passwordLabel = new JLabel("Password:");
@@ -342,11 +368,10 @@ class CustomersPanel extends JPanel {
         JTextField phoneField = new JTextField();
         JLabel addressLabel = new JLabel("Address:");
         JTextField addressField = new JTextField();
-        JLabel roleLabel = new JLabel("Role:");
-        String[] roleOptions = {"ADMIN", "CUSTOMER"};
-        JComboBox<String> roleComboBox = new JComboBox<>(roleOptions);
 
         // Add components to the form panel
+        formPanel.add(idLabel);
+        formPanel.add(idField);
         formPanel.add(emailLabel);
         formPanel.add(emailField);
         formPanel.add(passwordLabel);
@@ -359,8 +384,6 @@ class CustomersPanel extends JPanel {
         formPanel.add(phoneField);
         formPanel.add(addressLabel);
         formPanel.add(addressField);
-        formPanel.add(roleLabel);
-        formPanel.add(roleComboBox);
 
         // Create buttons
         JButton submitButton = new JButton("Submit");
@@ -373,13 +396,13 @@ class CustomersPanel extends JPanel {
                 // Handle create user action
                 // Implement your logic here, e.g., add a new row to the table
                 String[] userData = {
+                        idField.getText(),
                         emailField.getText(),
-                        passwordField.getText(),
+                     //   passwordField.getText(),
                         firstNameField.getText(),
                         lastNameField.getText(),
                         phoneField.getText(),
-                        addressField.getText(),
-                        (String)roleComboBox.getSelectedItem()
+                        addressField.getText()
                 };
                 tableModel.addRow(userData);
                 addUserDialog.dispose(); // Close the dialog
@@ -417,6 +440,7 @@ class BranchPanel extends JPanel {
     private BranchTableModel tableModel2;
     private InstrumentRentalManager manager;
     private JFrame parent;
+    private DefaultTableCellRenderer cellRenderer;
 
     public BranchPanel(InstrumentRentalManager manager, JFrame parent) {
         this.parent = parent;
@@ -439,10 +463,22 @@ class BranchPanel extends JPanel {
         }
 
         contentTable = new JTable(tableModel2);
-        // contentTable.setFillsViewportHeight(true);
-        JScrollPane scrollPane = new JScrollPane(contentTable);
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setViewportView(contentTable);
+        // contentTable.setPreferredScrollableViewportSize(new Dimension(1000, 800));
+        contentTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+        contentTable.getColumnModel().getColumn(1).setPreferredWidth(120);
+//        contentTable.getColumnModel().getColumn(2).setPreferredWidth(10);
+//        contentTable.getColumnModel().getColumn(3).setPreferredWidth(50);
+        contentTable.getColumnModel().getColumn(3).setPreferredWidth(500);
 
-        contentTable.setPreferredScrollableViewportSize(new Dimension(1000, 800));
+        // JScrollPane scrollPane = new JScrollPane(contentTable);
+
+        cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(JLabel.CENTER);
+
+        contentTable.getColumnModel().getColumn(0).setCellRenderer(cellRenderer);
+
 
         // Buttons
         JButton addButton = new JButton("Add");
@@ -537,7 +573,7 @@ class BranchPanel extends JPanel {
                 };
                 // tableModel.addRow(branchData);
 
-                Branch branch = new Branch(Integer.valueOf(idField.getText()), nameField.getText(), phoneField.getText(), new Address(addressField.getText()), BranchStatus.valueOf((String)statusComboBox.getSelectedItem()), null, new ArrayList<Instrument>());
+                Branch branch = new Branch(Integer.valueOf(idField.getText()), nameField.getText(), phoneField.getText(), new Address(addressField.getText()), BranchStatus.valueOf((String)statusComboBox.getSelectedItem()), new ArrayList<Instrument>());
 
                 com.mirs.model.domain.Composite composite = new Composite();
                 composite.setBranch(branch);
@@ -621,6 +657,8 @@ class InstrumentPanel extends JPanel {
 
         contentTable = new JTable(tableModel2);
         // contentTable.setFillsViewportHeight(true);
+        contentTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+
         JScrollPane scrollPane = new JScrollPane(contentTable);
 
         contentTable.setPreferredScrollableViewportSize(new Dimension(1000, 800));
@@ -679,14 +717,14 @@ class InstrumentPanel extends JPanel {
         JLabel nameLabel = new JLabel("Name:");
         JTextField nameField = new JTextField();
         JLabel typeLabel = new JLabel("Type:");
-        String[] types = {"BRASS", "KEYBOARD", "PERCUSSION", "STRING", "WOODWIND"};
+        String[] types = {"BRASS", "KEYBOARD", "PERCUSSION", "STRING", "FREE_REED_WIND", "WOODWIND"};
         JComboBox<String> typesComboBox = new JComboBox<>(types);
         JLabel modelNumLabel = new JLabel("ModelNum:");
         JTextField modelNumField = new JTextField();
         JLabel serialNumLabel = new JLabel("Serial Num:");
         JTextField serialNumField = new JTextField();
         JLabel statusLabel = new JLabel("Status:");
-        String[] statusList = {"AVAILABLE", "RENTED", "BROKEN", "LOST", "STOLEN"};
+        String[] statusList = {"AVAILABLE", "RESERVED", "BROKEN", "LOST", "STOLEN"};
         JComboBox<String> statusComboBox = new JComboBox<>(statusList);
 
         // Add components to the form panel
@@ -778,14 +816,300 @@ class InstrumentPanel extends JPanel {
     }
 }
 
-class RentalPanel extends JPanel {
+class ReservationPanel extends JPanel {
     private JTable contentTable;
     private DefaultTableModel tableModel;
+    private ReservationTableModel tableModel2;
     private InstrumentRentalManager manager;
+    private JFrame parent;
 
-    public RentalPanel(InstrumentRentalManager manager, JFrame parent) {
-        // Implementation similar to CustomersPanel
+    private String datePattern = "yyyy-MM-dd";
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+    public ReservationPanel(InstrumentRentalManager manager, JFrame parent) {
+        this.parent = parent;
         this.manager = manager;
+        setLayout(new BorderLayout());
+
+        // Column names
+        String[] columns = {"ID", "Customer", "Employee", "Branch", "Instrument", "Start Date", "End Date"};
+
+        // Table model
+        tableModel = new DefaultTableModel(columns, 0);
+        tableModel2 = new ReservationTableModel();
+
+        Composite composite = new Composite();
+        boolean isSuccess = manager.performAction("LIST_RESERVATIONS", composite);
+        if (isSuccess) {
+            tableModel2.setReservationList(composite.getReservationList());
+        } else {
+            System.out.println("\nFAIL:  ReservationPanel:: - Reservations not listed. ");
+        }
+
+        contentTable = new JTable(tableModel2);
+        // contentTable.setFillsViewportHeight(true);
+        contentTable.getColumnModel().getColumn(0).setPreferredWidth(5);
+
+        JScrollPane scrollPane = new JScrollPane(contentTable);
+
+        contentTable.setPreferredScrollableViewportSize(new Dimension(1000, 800));
+
+        // Buttons
+        JButton addButton = new JButton("Add");
+        JButton editButton = new JButton("Edit");
+        JButton deleteButton = new JButton("Delete");
+
+        // Button actions
+        addButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle add action
+                openAddReservationDialog();
+            }
+        });
+
+        editButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle edit action
+                // Implement your logic here
+            }
+        });
+
+        deleteButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle delete action
+                // Implement your logic here
+            }
+        });
+
+        // Adding components to the panel
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+        buttonPanel.add(addButton);
+        buttonPanel.add(editButton);
+        buttonPanel.add(deleteButton);
+
+        add(scrollPane, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+
+    }
+
+    private void openAddReservationDialog() {
+        JDialog addReservationDialog = new JDialog((Frame)null, "Add Reservation", true);
+        addReservationDialog.setSize(400, 300);
+        Composite composite = new Composite();
+        boolean isSuccess = false;
+
+        // Create form components
+        JPanel formPanel = new JPanel(new GridLayout(7, 2, 5, 5));
+        formPanel.setBorder(new EmptyBorder(5, 10, 5, 10));
+        JLabel idLabel = new JLabel("ID:");
+        JTextField idField = new JTextField();
+
+        JLabel customerLabel = new JLabel("Customer:");
+        isSuccess = manager.performAction("LIST_CUSTOMERS", composite);
+        List<User> customerList = composite.getUserList();
+        Vector<Item> customerListModel = new Vector<Item>();
+        if (isSuccess) {
+            for (User u : customerList) {
+                customerListModel.add(new Item(u.getId(), u.getFirstName() + " " + u.getLastName()));
+            }
+        }
+        JComboBox customerListComboBox = new JComboBox(customerListModel);
+
+        JLabel employeeLabel = new JLabel("Employee:");
+        isSuccess = manager.performAction("LIST_EMPLOYEES", composite);
+        List<User> employeeList = composite.getUserList();
+        Vector<Item> employeeListModel = new Vector<Item>();
+        if (isSuccess) {
+            for (User u : employeeList) {
+                employeeListModel.add(new Item(u.getId(), u.getFirstName() + " " + u.getLastName()));
+            }
+        }
+        JComboBox employeeListComboBox = new JComboBox(employeeListModel);
+
+
+        isSuccess = manager.performAction("LIST_BRANCHES", composite);
+        Vector<Item> branchListModel = new Vector<Item>();
+        List<Branch> branchList = composite.getBranchList();
+        if (isSuccess) {
+            for (Branch b : branchList) {
+                if (b.getStatus() == BranchStatus.ACTIVE) {
+                    branchListModel.add(new Item(b.getId(), b.getName()));
+                }
+            }
+        }
+        JLabel branchLabel = new JLabel("Branch:");
+        JComboBox<String> branchListComboBox = new JComboBox(branchListModel);
+
+
+        isSuccess = manager.performAction("LIST_INSTRUMENTS", composite);
+        Vector<Item> instrumentListModel = new Vector<Item>();
+        List<Instrument> instrumentList = composite.getInstrumentList();
+        if (isSuccess) {
+            for (Instrument i : instrumentList) {
+                if (i.getStatus() == InstrumentStatus.AVAILABLE) {
+                    instrumentListModel.add(new Item(i.getId(), i.getName()));
+                }
+            }
+        }
+        JLabel instrumentLabel = new JLabel("Instrument:");
+        JComboBox instrumentListComboBox = new JComboBox(instrumentListModel);
+
+        JLabel startDateLabel = new JLabel("Start Date:");
+        JTextField startDateField = new JTextField();
+
+        JLabel endDateLabel = new JLabel("End Date:");
+        JTextField endDateField = new JTextField();
+
+
+        // Add components to the form panel
+        formPanel.add(idLabel);
+        formPanel.add(idField);
+        formPanel.add(customerLabel);
+        formPanel.add(customerListComboBox);
+        formPanel.add(employeeLabel);
+        formPanel.add(employeeListComboBox);
+        formPanel.add(branchLabel);
+        formPanel.add(branchListComboBox);
+        formPanel.add(instrumentLabel);
+        formPanel.add(instrumentListComboBox);
+
+        formPanel.add(startDateLabel);
+        formPanel.add(startDateField);
+        formPanel.add(endDateLabel);
+        formPanel.add(endDateField);
+
+        // Create buttons
+        JButton submitButton = new JButton("Submit");
+        JButton cancelButton = new JButton("Cancel");
+
+        // Button actions
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Handle create user action
+
+                Reservation reservation = null;
+
+                String selectedBranchName = "";
+                for (Branch b : branchList) {
+                    if (b.getId() == ((Item)branchListComboBox.getSelectedItem()).getId()) {
+                        selectedBranchName = b.getName();
+                        break;
+                    }
+                }
+
+                String selectedInstrumentName = "";
+                Instrument selectedInstrument = null;
+                for (Instrument i : instrumentList) {
+                    if (i.getId() == ((Item)instrumentListComboBox.getSelectedItem()).getId()) {
+                        selectedInstrument = i;
+                        selectedInstrumentName = i.getName();
+                        break;
+                    }
+                }
+
+                String selectedCustomerName = "";
+                for (User u : customerList) {
+                    if (u.getId() == ((Item)customerListComboBox.getSelectedItem()).getId()) {
+                        selectedCustomerName = u.getFirstName() + " " + u.getLastName();
+                        break;
+                    }
+                }
+
+                String selectedEmployeeName = "";
+                for (User u : employeeList) {
+                    if (u.getId() == ((Item)employeeListComboBox.getSelectedItem()).getId()) {
+                        selectedEmployeeName = u.getFirstName() + " " + u.getLastName();
+                        break;
+                    }
+                }
+
+                Date currentDate = new Date();
+                Date startDate = null;
+                Date endDate = null;
+
+                try {
+                    startDate = dateFormatter.parse(startDateField.getText());
+                    endDate = dateFormatter.parse(endDateField.getText());
+
+                     reservation = new Reservation(
+                            Integer.valueOf(idField.getText()),
+                             ((Item)customerListComboBox.getSelectedItem()).getId(),
+                             selectedCustomerName,
+                             ((Item)employeeListComboBox.getSelectedItem()).getId(),
+                             selectedEmployeeName,
+                             ((Item)branchListComboBox.getSelectedItem()).getId(),
+                             selectedBranchName,
+                            ((Item)instrumentListComboBox.getSelectedItem()).getId(),
+                             selectedInstrumentName,
+                             startDate,
+                             endDate
+                    );
+                } catch (ParseException ex) {
+                    throw new RuntimeException(ex);
+                }
+
+
+                com.mirs.model.domain.Composite composite = new Composite();
+                composite.setReservation(reservation);
+
+                boolean isAdded = manager.performAction("ADD_RESERVATION", composite);
+                if (isAdded) {
+                    System.out.println("\nSUCCESS:  ReservationPanel:: - Reservation was added. ");
+
+                    if (currentDate.after(startDate) && currentDate.before(endDate)) {
+                        selectedInstrument.setStatus(InstrumentStatus.RESERVED);
+                    }
+
+                    composite.setInstrument(selectedInstrument);
+                    boolean isUpdated = manager.performAction("UPDATE_INSTRUMENT", composite);
+                    if (isUpdated) {
+                        System.out.println("\nSUCCESS:  ReservationPanel:: - Instrument was updated. ");
+                    } else {
+                        System.out.println("\nFAIL:  ReservationPanel:: - Instrument was not updated. ");
+                    }
+
+                } else {
+                    System.out.println("\nFAIL:  ReservationPanel:: - Reservation was not added. ");
+                }
+
+                boolean isListed = manager.performAction("LIST_RESERVATIONS", composite);
+                if (isListed) {
+                    System.out.println("\nSUCCESS:  ReservationPanel:: - Reservations were listed. ");
+                    tableModel2.setReservationList(composite.getReservationList());
+                    tableModel2.fireTableDataChanged();
+                } else {
+                    System.out.println("\nFAIL:  ReservationPanel:: - Reservations were not listed. ");
+                }
+
+                addReservationDialog.dispose(); // Close the dialog
+            }
+        });
+
+        cancelButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Close the dialog without creating a new user
+                addReservationDialog.dispose();
+            }
+        });
+
+        // Add buttons to a panel
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(submitButton);
+        buttonPanel.add(cancelButton);
+
+        // Add form panel and button panel to the dialog
+        addReservationDialog.add(formPanel, BorderLayout.CENTER);
+        addReservationDialog.add(buttonPanel, BorderLayout.SOUTH);
+
+        ViewUtil.centerDialogOverFrame(addReservationDialog, parent);
+        // Set dialog visibility
+        addReservationDialog.setVisible(true);
     }
 }
 
@@ -831,6 +1155,92 @@ class BranchTableModel extends AbstractTableModel {
     }
 }
 
+class CustomerTableModel extends AbstractTableModel {
+    java.util.List<User> customerList = new ArrayList<User>();
+
+    String[] columns = {"ID", "Email", "First Name", "Last Name", "Phone", "Address"};
+
+    @Override
+    public String getColumnName(int column) {
+        return columns[column];
+    }
+
+    @Override
+    public int getRowCount() {
+        return customerList.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columns.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        User customer = customerList.get(rowIndex);
+        return switch (columnIndex) {
+            case 0 -> customer.getId();
+            case 1 -> customer.getEmail();
+            case 2 -> customer.getFirstName();
+            case 3 -> customer.getLastName();
+            case 4 -> customer.getPhone();
+            case 5 -> customer.getAddress().getAddress1();
+            default -> null;
+        };
+    }
+
+    public java.util.List<User> getCustomerList() {
+        return this.customerList;
+    }
+
+    public void setCustomerList(java.util.List<User> customerList) {
+        this.customerList = customerList;
+    }
+}
+
+class EmployeeTableModel extends AbstractTableModel {
+    java.util.List<User> employeeList = new ArrayList<User>();
+
+    String[] columns = {"ID", "Email", "First Name", "Last Name", "Phone", "Address"};
+
+    @Override
+    public String getColumnName(int column) {
+        return columns[column];
+    }
+
+    @Override
+    public int getRowCount() {
+        return employeeList.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columns.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        User employee = employeeList.get(rowIndex);
+        return switch (columnIndex) {
+            case 0 -> employee.getId();
+            case 1 -> employee.getEmail();
+            case 2 -> employee.getFirstName();
+            case 3 -> employee.getLastName();
+            case 4 -> employee.getPhone();
+            case 5 -> employee.getAddress().getAddress1();
+            default -> null;
+        };
+    }
+
+    public java.util.List<User> getEmployeeList() {
+        return this.employeeList;
+    }
+
+    public void setEmployeeList(java.util.List<User> employeeList) {
+        this.employeeList = employeeList;
+    }
+}
+
 class InstrumentTableModel extends AbstractTableModel {
     java.util.List<Instrument> instrumentList = new ArrayList<Instrument>();
 
@@ -871,5 +1281,74 @@ class InstrumentTableModel extends AbstractTableModel {
 
     public void setInstrumentList(java.util.List<Instrument> instrumentList) {
         this.instrumentList = instrumentList;
+    }
+}
+
+class ReservationTableModel extends AbstractTableModel {
+    java.util.List<Reservation> reservationList = new ArrayList<Reservation>();
+    private String datePattern = "yyyy-MM-dd";
+    private SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
+
+    String[] columns = {"ID", "Customer", "Employee", "Branch", "Instrument", "Start Date", "End Date"};
+
+
+    @Override
+    public String getColumnName(int column) {
+        return columns[column];
+    }
+
+    @Override
+    public int getRowCount() {
+        return reservationList.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return columns.length;
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+        Reservation reservation = reservationList.get(rowIndex);
+        return switch (columnIndex) {
+            case 0 -> reservation.getId();
+            case 1 -> reservation.getCustomerName();
+            case 2 -> reservation.getEmployeeName();
+            case 3 -> reservation.getBranchName();
+            case 4 -> reservation.getInstrumentName();
+            case 5 -> dateFormatter.format(reservation.getStartDate());
+            case 6 -> dateFormatter.format(reservation.getEndDate());
+            default -> null;
+        };
+    }
+
+    public java.util.List<Reservation> getReservationList() {
+        return this.reservationList;
+    }
+
+    public void setReservationList(java.util.List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
+}
+
+class Item {
+    private int id;
+    private String description;
+
+    public Item(int id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String toString() {
+        return description;
     }
 }

@@ -8,31 +8,31 @@ import java.util.List;
 
 public class ViewDriver1 {
     public static void main(String[] args) {
-        System.out.println("Musical Instrument Rental System version 1.0");
+        System.out.println("Musical Instrument Reservation System version 1.0");
 
         StringBuilder message = new StringBuilder();
         InstrumentRentalManager manager = InstrumentRentalManager.getInstance();
 
         Address address1 = new Address("100 W Circle Ave", "Apt 100", "Nashville", "TN", "43400");
 
-        User user1 = new User("tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address1, Role.CUSTOMER);
+        User user1 = new User(1,"tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address1, Role.CUSTOMER);
 
 
         Branch branch1 = new Branch(1, "Music Store # 1", "7082094545",
                 new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
-                BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
+                BranchStatus.ACTIVE, new ArrayList<Instrument>());
 
         Branch branch2 = new Branch(2, "Music Store # 2", "7082091000",
                 new Address("405 W Roosevelt Rd", "", "Lombard", "IL", "60811"),
-                BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
+                BranchStatus.ACTIVE, new ArrayList<Instrument>());
 
         Branch branch3 = new Branch(3, "Music Store # 3", "7738412323",
                 new Address("100 W Madison Ave", "", "Chicago", "IL", "60623"),
-                BranchStatus.ACTIVE, new AvailableRentals(true, new ArrayList<Instrument>()), new ArrayList<Instrument>());
+                BranchStatus.ACTIVE, new ArrayList<Instrument>());
 
         Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
         Instrument instrument2 = new Instrument(2, "Classical Guitar", InstrumentType.STRING, "ABC123", "200000", InstrumentStatus.AVAILABLE);
-        Instrument instrument3 = new Instrument(3, "Saxophone", InstrumentType.BRASS, "DEF456", "300000", InstrumentStatus.RENTED);
+        Instrument instrument3 = new Instrument(3, "Saxophone", InstrumentType.BRASS, "DEF456", "300000", InstrumentStatus.RESERVED);
         Instrument instrument4 = new Instrument(4, "Bongo Drum", InstrumentType.PERCUSSION, "GHI789", "400000", InstrumentStatus.BROKEN);
 
         Composite composite = new Composite();

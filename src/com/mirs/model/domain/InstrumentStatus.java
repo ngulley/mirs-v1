@@ -2,7 +2,7 @@ package com.mirs.model.domain;
 
 public enum InstrumentStatus {
     AVAILABLE,
-    RENTED,
+    RESERVED,
     BROKEN,
     LOST,
     STOLEN

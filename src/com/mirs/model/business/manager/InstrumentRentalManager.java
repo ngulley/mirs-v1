@@ -7,11 +7,13 @@ import com.mirs.model.services.factory.ServiceFactory;
 import com.mirs.model.services.exception.*;
 import com.mirs.model.services.instrument.*;
 import com.mirs.model.services.login.ILoginService;
+import com.mirs.model.services.reservation.IReservationService;
+import com.mirs.model.services.user.IUserService;
 
 import java.util.List;
 
 
-public class InstrumentRentalManager extends AbstractManager{
+public class InstrumentRentalManager extends AbstractManager {
 
     private static InstrumentRentalManager myInstance;
 
@@ -54,8 +56,20 @@ public class InstrumentRentalManager extends AbstractManager{
             case "LIST_BRANCHES":
                 action = listBranches(commandString, composite);
                 break;
+            case "LIST_CUSTOMERS":
+                action = listCustomers(commandString, composite);
+                break;
+            case "LIST_EMPLOYEES":
+                action = listEmployees(commandString, composite);
+                break;
             case "LIST_INSTRUMENTS":
                 action = listInstruments(commandString, composite);
+                break;
+            case "LIST_RESERVATIONS":
+                action = listReservations(commandString, composite);
+                break;
+            case "LIST_USERS":
+                action = listUsers(commandString, composite);
                 break;
             case "ADD_BRANCH":
                 action = addBranch(commandString, composite);
@@ -63,17 +77,26 @@ public class InstrumentRentalManager extends AbstractManager{
             case "ADD_INSTRUMENT":
                 action = addInstrument(commandString, composite);
                 break;
+            case "ADD_RESERVATION":
+                action = addReservation(commandString, composite);
+                break;
             case "UPDATE_BRANCH":
                 action = updateBranch(commandString, composite);
                 break;
             case "UPDATE_INSTRUMENT":
                 action = updateInstrument(commandString, composite);
                 break;
+            case "UPDATE_RESERVATION":
+                action = updateReservation(commandString, composite);
+                break;
             case "DELETE_BRANCH":
                 action = deleteBranch(commandString, composite);
                 break;
             case "DELETE_INSTRUMENT":
                 action = deleteInstrument(commandString, composite);
+                break;
+            case "DELETE_RESERVATION":
+                action = deleteReservation(commandString, composite);
                 break;
             default:
                 System.out.println("INFO:  Add new workflows here using here using if/else.");
@@ -264,5 +287,142 @@ public class InstrumentRentalManager extends AbstractManager{
             System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
         }
         return isDeleted;
+    }
+
+    private boolean listReservations(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IReservationService reservationService;
+        boolean isListed = false;
+
+        try {
+            reservationService = (IReservationService) serviceFactory.getService(com.mirs.model.services.reservation.IReservationService.NAME);
+            List<Reservation> reservations = reservationService.list();
+            composite.setReservationList(reservations);
+            isListed = true;
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load ReservationService." + sle.getMessage());
+        } catch (ReservationException ie) {
+            System.out.println("ERROR: InstrumentRentalManager::listRentals() failed." + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isListed;
+    }
+
+    private boolean addReservation(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IReservationService reservationService;
+        boolean isAdded = false;
+
+        try {
+            reservationService = (IReservationService) serviceFactory.getService(com.mirs.model.services.reservation.IReservationService.NAME);
+            isAdded = reservationService.add(composite.getReservation());
+            composite.setReservationList(reservationService.list());
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load ReservationService." + sle.getMessage());
+        } catch (ReservationException ie) {
+            System.out.println("ERROR:  InstrumentRentalManager::addRental() failed. " + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isAdded;
+    }
+
+    private boolean updateReservation(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IReservationService reservationService;
+        boolean isUpdated = false;
+
+        try {
+            reservationService = (IReservationService) serviceFactory.getService(com.mirs.model.services.reservation.IReservationService.NAME);
+            isUpdated = reservationService.update(composite.getReservation());
+            composite.setReservationList(reservationService.list());
+         } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load ReservationService." + sle.getMessage());
+        } catch (ReservationException ie) {
+            System.out.println("ERROR:  InstrumentRentalManager::updateRental() failed. " + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isUpdated;
+    }
+
+    private boolean deleteReservation(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IReservationService reservationService;
+        boolean isDeleted = false;
+
+        try {
+            reservationService = (IReservationService) serviceFactory.getService(com.mirs.model.services.reservation.IReservationService.NAME);
+            isDeleted = reservationService.delete(composite.getReservation().getId());
+            composite.setReservationList(reservationService.list());
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load ReservationService." + sle.getMessage());
+        } catch (ReservationException ie) {
+            System.out.println("ERROR:  InstrumentRentalManager::deleteRental() failed. " + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isDeleted;
+    }
+
+    private boolean listCustomers(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IUserService userService;
+        boolean isListed = false;
+
+        try {
+            userService = (IUserService) serviceFactory.getService(IUserService.NAME);
+            List<User> users = userService.list(Role.CUSTOMER);
+            composite.setUserList(users);
+            isListed = true;
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load UserService." + sle.getMessage());
+        } catch (UserException ie) {
+            System.out.println("ERROR: InstrumentRentalManager::listUsers() failed." + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isListed;
+    }
+
+    private boolean listEmployees(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IUserService userService;
+        boolean isListed = false;
+
+        try {
+            userService = (IUserService) serviceFactory.getService(IUserService.NAME);
+            List<User> users = userService.list(Role.EMPLOYEE);
+            composite.setUserList(users);
+            isListed = true;
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load UserService." + sle.getMessage());
+        } catch (UserException ie) {
+            System.out.println("ERROR: InstrumentRentalManager::listUsers() failed." + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isListed;
+    }
+
+    private boolean listUsers(String commandString, Composite composite) {
+        ServiceFactory serviceFactory = ServiceFactory.getInstance();
+        IUserService userService;
+        boolean isListed = false;
+
+        try {
+            userService = (IUserService) serviceFactory.getService(IUserService.NAME);
+            List<User> users = userService.list();
+            composite.setUserList(users);
+            isListed = true;
+        } catch (ServiceLoadException sle) {
+            System.out.println("ERROR: InstrumentRentalManager::failed to load UserService." + sle.getMessage());
+        } catch (UserException ie) {
+            System.out.println("ERROR: InstrumentRentalManager::listUsers() failed." + ie.getMessage());
+        } catch (Exception e) {
+            System.out.println("ERROR: InstrumentRentalManager::Unknown error." + e.getMessage());
+        }
+        return isListed;
     }
 }

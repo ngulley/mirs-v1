@@ -1,5 +1,6 @@
 package com.mirs.model.services.factory;
 
+import com.mirs.model.domain.Instrument;
 import com.mirs.model.services.IService;
 import com.mirs.model.services.branch.BranchServiceImpl;
 import com.mirs.model.services.branch.IBranchService;
@@ -9,6 +10,9 @@ import com.mirs.model.services.login.ILoginService;
 import com.mirs.model.services.login.LoginServiceImpl;
 
 import com.mirs.model.business.exception.ServiceLoadException;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Simplistic implementation of a Service Factory.
@@ -31,18 +35,28 @@ public class ServiceFactory {
     }
 
     /**
+     * Service instance persistence mechanism needed to maintain application state when no database is used
+     */
+    private Map<String, IService> serviceList = new HashMap<String, IService>();
+
+    /**
      *
      * @param serviceName
      * @return
      * @throws ServiceLoadException
      */
     public IService getService(String serviceName) throws ServiceLoadException {
+        if (serviceList.containsKey(serviceName)) {
+            return serviceList.get(serviceName);
+        }
         try {
             // Class is a parametrizable class. By writing Class<?>, we're declaring a Class object
             // which can be of any type (? is a wildcard).
             // Reference about Generics and Wildcards:http://docs.oracle.com/javase/tutorial/java/generics/wildcards.html
             Class<?> c = Class.forName(getImplName(serviceName));
-            return (IService) c.newInstance();
+            IService iService = (IService)c.newInstance();
+            serviceList.put(serviceName, iService);
+            return iService;
         } catch (Exception excp) {
             serviceName = serviceName + " not loaded";
             throw new ServiceLoadException(serviceName, excp);

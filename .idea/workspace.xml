@@ -6,11 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="79bb9cde-a935-4a5b-b4b4-f035f2d77c85" name="Changes" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/AvailableRentals.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Branch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Composite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Composite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/InstrumentStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/InstrumentStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/InstrumentType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/InstrumentType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/branch/BranchServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/branch/BranchServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/factory/ServiceFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view/ViewDriver1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/mirs/view/ViewDriver1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/LoginJFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/MessageDialog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/Utils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/ViewDriver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/mainjframe/MainJFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/mainjframe/MainJFrameController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/registercustomerjframe/RegisterCustomerJFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/mirs/view0/registercustomerjframe/RegisterCustomerJFrameController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/mirs/model/domain/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mirs/model/domain/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/mirs/model/services/branch/BranchServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mirs/model/services/branch/BranchServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/mirs/model/services/instrument/InstrumentServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +236,7 @@
       <option name="presentableId" value="Default" />
       <updated>1697917184483</updated>
       <workItem from="1697917185716" duration="60340000" />
-      <workItem from="1700181271310" duration="67048000" />
+      <workItem from="1700181271310" duration="107384000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -245,24 +265,104 @@
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="14" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/com/mirs/view/ViewDriver1.java</url>
           <line>66</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="16" />
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>994</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/com/mirs/model/services/instrument/InstrumentServiceImpl.java</url>
-          <line>35</line>
-          <option name="timeStamp" value="17" />
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1056</line>
+          <option name="timeStamp" value="23" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>313</line>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1059</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1061</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1079</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1081</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>317</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>318</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>319</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>327</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>374</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/business/manager/InstrumentRentalManager.java</url>
+          <line>396</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>130</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>1038</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/view/MainJFrame.java</url>
+          <line>472</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/test/com/mirs/model/services/branch/BranchServiceImplTest.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/com/mirs/model/services/branch/BranchServiceImpl.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

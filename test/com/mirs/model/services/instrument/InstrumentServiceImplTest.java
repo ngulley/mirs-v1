@@ -30,7 +30,7 @@ public class InstrumentServiceImplTest {
     public final void testAdd1() {
         System.out.println("starting testAdd1()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(10, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             assertTrue ("Instrument is added", instrumentService.add(instrument1, composite));
@@ -49,7 +49,7 @@ public class InstrumentServiceImplTest {
     public final void testAdd2() {
         System.out.println("starting testAdd2()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(11, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             assertTrue ("Instrument is added", instrumentService.add(instrument1, composite));
@@ -60,7 +60,7 @@ public class InstrumentServiceImplTest {
 
         try {
             // Try to add an instrument that has the same id as an existing instrument in the system. An InstrumentException should be thrown
-            Instrument instrument2 = new Instrument(1, "Base Guitar", InstrumentType.STRING, "ABC789", "200000", InstrumentStatus.AVAILABLE);
+            Instrument instrument2 = new Instrument(11, "Base Guitar", InstrumentType.STRING, "ABC789", "200000", InstrumentStatus.AVAILABLE);
             instrumentService.add(instrument2, composite);
             System.out.println("testAdd2 FAILED");
             throw new RuntimeException();
@@ -79,10 +79,10 @@ public class InstrumentServiceImplTest {
     public final void testGetAll1() {
         System.out.println("starting testGatAll1()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
-        Instrument instrument2 = new Instrument(2, "Classical Guitar", InstrumentType.STRING, "ABC123", "200000", InstrumentStatus.AVAILABLE);
-        Instrument instrument3 = new Instrument(3, "Saxophone", InstrumentType.BRASS, "DEF456", "300000", InstrumentStatus.RENTED);
-        Instrument instrument4 = new Instrument(4, "Bongo Drum", InstrumentType.PERCUSSION, "GHI789", "400000", InstrumentStatus.BROKEN);
+        Instrument instrument1 = new Instrument(12, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument2 = new Instrument(13, "Classical Guitar", InstrumentType.STRING, "ABC123", "200000", InstrumentStatus.AVAILABLE);
+        Instrument instrument3 = new Instrument(14, "Saxophone", InstrumentType.BRASS, "DEF456", "300000", InstrumentStatus.RESERVED);
+        Instrument instrument4 = new Instrument(15, "Bongo Drum", InstrumentType.PERCUSSION, "GHI789", "400000", InstrumentStatus.BROKEN);
 
         try {
             instrumentService.add(instrument1, composite);
@@ -107,11 +107,11 @@ public class InstrumentServiceImplTest {
     public final void testUpdate1() {
         System.out.println("starting testUpdate1()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(16, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             instrumentService.add(instrument1, composite);
-            Instrument instrument1b = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.RENTED);
+            Instrument instrument1b = new Instrument(16, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.RESERVED);
 
             assertTrue ("Instrument is updated", instrumentService.update(instrument1b, composite));
         } catch (InstrumentException e) {
@@ -129,11 +129,11 @@ public class InstrumentServiceImplTest {
     public final void testUpdate2() {
         System.out.println("starting testUpdate2()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(17, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             instrumentService.add(instrument1, composite);
-            Instrument instrument1b = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.RENTED);
+            Instrument instrument1b = new Instrument(17, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.RESERVED);
 
             assertTrue ("Instrument is updated", instrumentService.update(instrument1b, composite));
         } catch (InstrumentException e) {
@@ -143,7 +143,7 @@ public class InstrumentServiceImplTest {
 
         try {
             // Try to update an instrument that doesn't have the same id as an existing instrument in the system. An exception should be thrown
-            Instrument instrument2 = new Instrument(2, "Base Guitar", InstrumentType.STRING, "ABC789", "200000", InstrumentStatus.AVAILABLE);
+            Instrument instrument2 = new Instrument(18, "Base Guitar", InstrumentType.STRING, "ABC789", "200000", InstrumentStatus.AVAILABLE);
             instrumentService.update(instrument2, composite);
             System.out.println("testUpdate2 FAILED");
             throw new RuntimeException();
@@ -161,7 +161,7 @@ public class InstrumentServiceImplTest {
     public final void testDelete1() {
         System.out.println("starting testDelete1()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(18, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             instrumentService.add(instrument1, composite);
@@ -182,7 +182,7 @@ public class InstrumentServiceImplTest {
     public final void testDelete2() {
         System.out.println("starting testDelete2()");
         Composite composite = new Composite();
-        Instrument instrument1 = new Instrument(1, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument1 = new Instrument(19, "Acoustic Guitar", InstrumentType.STRING, "ABC456", "100000", InstrumentStatus.AVAILABLE);
 
         try {
             instrumentService.add(instrument1, composite);
@@ -195,7 +195,7 @@ public class InstrumentServiceImplTest {
 
         try {
             // Try to delete an instrument that doesn't have the same id as an existing instrument in the system. An InstrumentException should be thrown
-            instrumentService.delete(2, composite);
+            instrumentService.delete(20, composite);
             System.out.println("testDelete2 FAILED");
             throw new RuntimeException();
         } catch (InstrumentException e) {

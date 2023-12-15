@@ -11,7 +11,26 @@ public class BranchServiceImpl implements IBranchService {
     /**
      * Temporary persistence mechanism
      */
-    private Map<Integer, Branch> branches = new HashMap<Integer, Branch>();
+    private final Map<Integer, Branch> branches = new HashMap<Integer, Branch>();
+
+    {
+        Branch branch1 = new Branch(1, "Moonshine Music - Oak Park", "7082094545",
+                new Address("6100 W North Ave", "", "Oak Park", "IL", "60302"),
+                BranchStatus.ACTIVE, new ArrayList<Instrument>());
+
+        Branch branch2 = new Branch(2, "Moonshine Music - Maywood", "7082093000",
+                new Address("7803 W Madison", "", "Maywood", "IL", "60934"),
+                BranchStatus.ACTIVE, new ArrayList<Instrument>());
+
+        Branch branch3 = new Branch(3, "Moonshine Music - Rosemont", "7732097878",
+                new Address("9983 N Harlem Ave", "", "Rosemont", "IL", "60132"),
+                BranchStatus.INACTIVE, new ArrayList<Instrument>());
+
+        branches.put(1, branch1);
+        branches.put(2, branch2);
+        branches.put(3, branch3);
+
+    }
 
     public boolean list(Composite composite) throws BranchException {
         boolean isListed = false;

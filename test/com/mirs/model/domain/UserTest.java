@@ -16,8 +16,8 @@ public class UserTest {
     public void setUp() throws Exception {
         address1 = new Address("100 W Circle Ave", "Apt 100", "Nashville", "TN", "43400");
         address2 = new Address("100 W Circle Ave", "Apt 100", "Nashville", "TN", "43400");
-        user1 = new User("tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address1, Role.CUSTOMER);
-        user2 = new User("tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address2, Role.CUSTOMER);
+        user1 = new User(1,"tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address1, Role.CUSTOMER);
+        user2 = new User(2,"tswift@gmail.com", "Pa55word!", "Taylor", "Swift", "8126559090", address2, Role.CUSTOMER);
 
     }
 

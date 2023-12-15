@@ -4,7 +4,6 @@ import com.mirs.model.domain.Composite;
 import com.mirs.model.domain.Instrument;
 import com.mirs.model.domain.InstrumentStatus;
 import com.mirs.model.domain.InstrumentType;
-import com.mirs.model.services.IService;
 import com.mirs.model.services.exception.InstrumentException;
 
 import java.util.*;
@@ -17,6 +16,20 @@ public class InstrumentServiceImpl implements IInstrumentService {
      * Temporary persistence mechanism
      */
     private Map<Integer, Instrument> instruments = new HashMap<Integer, Instrument>();
+
+    {
+        Instrument instrument1 = new Instrument(1, "Trumpet", InstrumentType.BRASS, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument2 = new Instrument(2, "Acoustic Guitar", InstrumentType.STRING, "FR100", "98675", InstrumentStatus.AVAILABLE);
+        Instrument instrument3 = new Instrument(3, "Drum Set", InstrumentType.PERCUSSION, "ABC456", "100000", InstrumentStatus.AVAILABLE);
+        Instrument instrument4 = new Instrument(4, "Xylophone", InstrumentType.KEYBOARD, "V100", "85665", InstrumentStatus.RESERVED);
+        Instrument instrument5 = new Instrument(5, "Soprano Flute", InstrumentType.WOODWIND, "BV100", "65675", InstrumentStatus.BROKEN);
+
+        instruments.put(1, instrument1);
+        instruments.put(2, instrument2);
+        instruments.put(3, instrument3);
+        instruments.put(4, instrument4);
+        instruments.put(5, instrument5);
+    }
 
     public boolean list(Composite composite) throws InstrumentException {
         boolean isListed = false;
@@ -56,8 +69,8 @@ public class InstrumentServiceImpl implements IInstrumentService {
         Instrument i = this.instruments.get(instrumentId);
         if (i == null) {
             throw new InstrumentException("Unable to delete because instrument id " + instrumentId + " doesn't exists in the system!");
-        } else if (i.getStatus() == InstrumentStatus.RENTED) {
-            throw new InstrumentException("Unable to delete because instrument " + instrumentId + " is currently in RENTED status. Only instruments " +
+        } else if (i.getStatus() == InstrumentStatus.RESERVED) {
+            throw new InstrumentException("Unable to delete because instrument " + instrumentId + " is currently in RESERVED status. Only instruments " +
                     "with a status of AVAILABLE or BROKEN can be deleted.!");
         }
         this.instruments.remove(instrumentId);
@@ -133,8 +146,8 @@ public class InstrumentServiceImpl implements IInstrumentService {
         Instrument i = this.getById(instrumentId);
         if (i == null) {
             throw new InstrumentException("Unable to delete because instrument id " + instrumentId + " doesn't exists in the system!");
-        } else if (i.getStatus() == InstrumentStatus.RENTED) {
-            throw new InstrumentException("Unable to delete because instrument " + instrumentId + " is currently in RENTED status. Only instruments " +
+        } else if (i.getStatus() == InstrumentStatus.RESERVED) {
+            throw new InstrumentException("Unable to delete because instrument " + instrumentId + " is currently in RESERVED status. Only instruments " +
                     "with a status of AVAILABLE or BROKEN can be deleted.!");
         }
         this.instruments.remove(instrumentId);

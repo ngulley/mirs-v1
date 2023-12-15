@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 7661657477853633935L;
+    private Integer id;
     private String email;
     private String password;
     private String firstName;
@@ -13,7 +14,8 @@ public class User implements Serializable {
     private Address address;
     private Role role;
 
-    public User(String email, String password, String firstName, String lastName, String phone, Address address, Role role) {
+    public User(Integer id, String email, String password, String firstName, String lastName, String phone, Address address, Role role) {
+        this.id = id;
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -22,6 +24,8 @@ public class User implements Serializable {
         this.address = address;
         this.role = role;
     }
+
+    public Integer getId() { return id; }
 
     public String getEmail() {
         return email;
@@ -50,6 +54,8 @@ public class User implements Serializable {
     public Role getRole() {
         return role;
     }
+
+    public void setId(Integer id) { this.id = id; }
 
     public void setEmail(String email) {
         this.email = email;
@@ -84,18 +90,19 @@ public class User implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone) && Objects.equals(address, user.address) && role == user.role;
+        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(firstName, user.firstName) && Objects.equals(lastName, user.lastName) && Objects.equals(phone, user.phone) && Objects.equals(address, user.address) && role == user.role;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, password, firstName, lastName, phone, address, role);
+        return Objects.hash(id, email, password, firstName, lastName, phone, address, role);
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "email='" + email + '\'' +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -106,7 +113,7 @@ public class User implements Serializable {
     }
 
     public boolean validate() {
-        if (email == null || password == null || firstName == null || lastName == null || phone == null | address == null || role == null) {
+        if (id == null || email == null || password == null || firstName == null || lastName == null || phone == null | address == null || role == null) {
             return false;
         }
         return true;

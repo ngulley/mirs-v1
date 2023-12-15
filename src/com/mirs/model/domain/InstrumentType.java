@@ -5,5 +5,6 @@ public enum InstrumentType {
     KEYBOARD,
     PERCUSSION,
     STRING,
+    FREE_REED_WIND,
     WOODWIND
 }
